@@ -1,7 +1,7 @@
 package edu.eci.arsw.coronaAPI.persistence;
 
 import java.util.HashMap;
-
+import edu.eci.arsw.coronaAPI.exceptions.CacheException;
 import edu.eci.arsw.coronaAPI.model.*;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,7 +14,7 @@ public class CoronaCache {
 
     private boolean lista = false;
     private HashMap <String, Pais> paises = new HashMap<>();
-    public void traerData(HttpResponse<JsonNode> response) {
+    public void traerData(HttpResponse<JsonNode> response) throws CacheException{
         lista = false;
         try {
             JSONObject object;
@@ -35,21 +35,21 @@ public class CoronaCache {
                 }
             }
 		} catch (JSONException e) {
-			e.printStackTrace();
+			throw new CacheException("Error al cargar data");
         } 
         lista = true; 
     }
 
-    public HashMap<String, Pais> getPaises(){
+    public HashMap<String, Pais> getPaises() throws CacheException{
         return this.paises;
     }
 
-    public Pais getPais(String pais){
+    public Pais getPais(String pais)  throws CacheException{
         if (paises.containsKey(pais)){
             return paises.get(pais);
         }
         else{
-            return null;
+            throw new CacheException("Pais no existente");
         }
     }
 
