@@ -5,10 +5,12 @@ import edu.eci.arsw.coronaAPI.exceptions.CacheException;
 import edu.eci.arsw.coronaAPI.model.*;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 import org.json.JSONArray;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 
+@Component
 public class CoronaCache {
 
 
