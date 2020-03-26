@@ -16,11 +16,11 @@ La acplicación cuenta con una estructura que le permite adaptarse rápidamente 
 ## Bono 1
 Para realizar este bono, se agregó un atributo al caché para determinar hace cuando fue la última actualización de este:
 
-![](ArchitectureDiagrams/bono1.png)
+![](ArchitectureDiagrams/Bono1.PNG)
 
 Y luego se valida este atributo en la calse de Servicio de la aplicación. Donde, en caso del cache tener un tiempo de actualización mayor a 5 minutos, se vuelve a ejecutar:
 
-![](ArchitectureDiagrams/bono2.png)
+![](ArchitectureDiagrams/Bono2.PNG)
 
 ## Preparación para el Parcial
 
