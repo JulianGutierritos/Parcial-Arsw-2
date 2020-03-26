@@ -1,5 +1,21 @@
 # Escuela Colombiana de Ingeniería Julio Garavito - Arquitecturas de Software ARSW - Parcial Segundo Tercio
 
+##Heroku Link
+
+https://dashboard.heroku.com/apps/julian-gutierrez-arsw2/deploy/github
+
+
+## Comandos de ejecución
+mvn package
+mvn spring-boot:run
+
+## Estructura
+La acplicación cuenta con una estructura que le permite adaptarse rápidamente a otro manejo de datos, ya que cuenta interfaces intermedias tanto desde el main a las clases de servicio, como entre las clases de servicio y las clases para acceder a la data.
+
+
+
+
+
 ## Preparación para el Parcial
 
 Con el objetivo de preparar el examen final del segundo tercio, por favor siga las siguientes instrucciones.
