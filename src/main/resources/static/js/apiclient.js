@@ -10,6 +10,16 @@ var apiclient = (function () {
         			callback(respuesta);
         		}
         	});
+        },
+
+        getCountry: function (callback, country) {
+        	jQuery.ajax({
+        		url: appUrl + "/" + country,
+        		type: "GET",
+        		success: function(respuesta) {
+        			callback(respuesta);
+        		}
+        	});
         }
 		
         
