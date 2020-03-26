@@ -1,5 +1,5 @@
 var apiclient = (function () {
-    var appUrl = "http://localhost:8080/CoronaVirus/countries";
+    var appUrl = "https://julian-gutierrez-arsw2.herokuapp.com/CoronaVirus/countries";
     return {
     	
         getCountries: function (callback) {
