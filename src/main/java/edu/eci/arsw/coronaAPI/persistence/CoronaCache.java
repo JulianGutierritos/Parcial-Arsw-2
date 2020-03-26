@@ -16,6 +16,7 @@ public class CoronaCache {
 
     private boolean lista = false;
     private HashMap<String, Pais> paises = new HashMap<>();
+    private HashMap<String, String> ubicaciones = new HashMap<>();
 
     public void traerData(HttpResponse<JsonNode> response) throws CacheException {
         try {
@@ -53,6 +54,18 @@ public class CoronaCache {
         else{
             throw new CacheException("Pais no existente");
         }
+    }
+
+    public String getUbicacion(String pais) throws CacheException{
+        if (ubicaciones.containsKey(pais)){
+            return ubicaciones.get(pais);
+        }
+        else{
+            throw new CacheException("No existe ubicación");
+        }
+    }
+    public void putUbicacion(String pais, String u){
+        ubicaciones.put(pais, u);
     }
 
     public boolean getLista(){

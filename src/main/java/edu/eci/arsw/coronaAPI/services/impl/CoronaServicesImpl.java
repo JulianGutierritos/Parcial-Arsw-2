@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.eci.arsw.coronaAPI.services.CoronaServices;
+import edu.eci.arsw.coronaAPI.exceptions.CacheException;
 import edu.eci.arsw.coronaAPI.exceptions.ServiceException;
 import edu.eci.arsw.coronaAPI.httpConnector.HttpConnectionService;
 import edu.eci.arsw.coronaAPI.httpConnector.HttpCordenateService;
 import edu.eci.arsw.coronaAPI.model.*;
 import edu.eci.arsw.coronaAPI.persistence.CoronaCache;
-
 
 @Service
 public class CoronaServicesImpl implements CoronaServices {
@@ -48,10 +48,14 @@ public class CoronaServicesImpl implements CoronaServices {
 
     public String getCoordenada(String pais) throws ServiceException {
         try {
-            return httpCordenateService.getCoordenadas(pais);
-        } catch (UnirestException e) {
-            throw new ServiceException("Coordenada no encontrada");
+            return coronaCache.getUbicacion(pais);
+        } catch (CacheException e1) {
+            try {
+                coronaCache.putUbicacion(pais, httpCordenateService.getCoordenadas(pais));
+                return httpCordenateService.getCoordenadas(pais);
+            } catch (UnirestException e) {
+                throw new ServiceException("Coordenada no encontrada");
+            }
         }
     }
-    
 }
