@@ -1,4 +1,5 @@
 var apiclient = apiclient;
+var map = map;
 var app = (function () {
     var pais;
 
@@ -21,7 +22,7 @@ var app = (function () {
 
     var ventana = function(row){
         localStorage.setItem('pais', row);
-        window.open("/detalle.html","ventana1","width=500,height=500,scrollbars=NO");
+        window.open("/detalle.html","ventana1","width=1500,height=800,scrollbars=NO");
     }
 
     var getDetalle = function(){
@@ -38,16 +39,34 @@ var app = (function () {
                 '<tr class="table-row" onclick="app.prueba(\'' + row.nombre +  '\')"><td>'+ row.nombre + '</td><td>' + row.numDeaths + '</td><td>' + row.numInfected + '</td><td>' + row.numCured + '</td></tr>'
             );
         }
+        apiclient.getCoordenada(ubicacion, resp.nombre);
     }
 
     var prueba = function(nombre){
-        alert(nombre);
+        alert("Aquí se podría desplegar la informacion más en detalle de la provincia " + nombre);
     }
 
+    var ubicacion= function(data){
+        var coordC =JSON.parse(data);
+        var coordenadas = new google.maps.LatLng(coordC[0].latlng[0],coordC[0].latlng[1]);
+        var mapOptions = {
+        zoom: 100,
+        center: coordenadas
+        }
+        map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: pos
+        });
+        marker.setMap(map);
+    }   
+   
     
     return{
         getCountries : getCountries, 
         ventana : ventana,
-        getDetalle : getDetalle
+        getDetalle : getDetalle,
+        prueba : prueba
     };
   })();
+
+  

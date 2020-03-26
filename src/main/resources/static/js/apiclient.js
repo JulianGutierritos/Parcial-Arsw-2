@@ -20,6 +20,16 @@ var apiclient = (function () {
         			callback(respuesta);
         		}
         	});
+        },
+
+        getCoordenada: function (callback, country) {
+        	jQuery.ajax({
+        		url: appUrl + "/" + country + "/coordinate",
+        		type: "GET",
+        		success: function(respuesta) {
+        			callback(respuesta);
+        		}
+        	});
         }
 		
         

@@ -12,32 +12,32 @@ import com.mashape.unirest.http.JsonNode;
 
 @Component
 public class CoronaCache {
-
+    
 
     private boolean lista = false;
-    private HashMap <String, Pais> paises = new HashMap<>();
-    public void traerData(HttpResponse<JsonNode> response) throws CacheException{
-        lista = false;
+    private HashMap<String, Pais> paises = new HashMap<>();
+
+    public void traerData(HttpResponse<JsonNode> response) throws CacheException {
         try {
             JSONObject object;
             String pais;
             Provincia p;
             JSONArray a = (JSONArray) ((JSONObject) response.getBody().getObject().get("data")).get("covid19Stats");
-			for (int i = 0; i < a.length(); i++) {
+            for (int i = 0; i < a.length(); i++) {
                 object = a.getJSONObject(i);
-                p = new Provincia((String) object.get("province"), (int) object.get("deaths"), (int) object.get("confirmed"), (int) object.get("recovered"));     
+                p = new Provincia((String) object.get("province"), (int) object.get("deaths"),
+                        (int) object.get("confirmed"), (int) object.get("recovered"));
                 pais = (String) object.get("country");
-                if (paises.containsKey(pais)){
+                if (paises.containsKey(pais)) {
                     paises.get(pais).addProvincia(p);
-                }
-                else{
+                } else {
                     Pais paisO = new Pais(pais);
                     paisO.addProvincia(p);
                     paises.put(pais, paisO);
                 }
             }
-		} catch (JSONException e) {
-			throw new CacheException("Error al cargar data");
+        } catch (JSONException e) {
+            throw new CacheException("Error al cargar data");
         } 
         lista = true; 
     }
