@@ -10,7 +10,7 @@ mvn package
 mvn spring-boot:run
 
 ## Estructura
-La acplicación cuenta con una estructura que le permite adaptarse rápidamente a otro manejo de datos, ya que cuenta interfaces intermedias tanto desde el main a las clases de servicio, como entre las clases de servicio y las clases para acceder a la data.
+La aplicación cuenta con una estructura que le permite adaptarse rápidamente a otro manejo de datos, ya que cuenta interfaces intermedias tanto desde el main a las clases de servicio, como entre las clases de servicio y las clases para acceder a la data.
 
 
 ## Bono 1
