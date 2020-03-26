@@ -1,7 +1,9 @@
 package edu.eci.arsw.coronaAPI.services.impl;
 
+import java.time.LocalDateTime;
 //import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TimerTask;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 
@@ -12,7 +14,7 @@ import edu.eci.arsw.coronaAPI.services.CoronaServices;
 import edu.eci.arsw.coronaAPI.exceptions.CacheException;
 import edu.eci.arsw.coronaAPI.exceptions.ServiceException;
 import edu.eci.arsw.coronaAPI.httpConnector.HttpConnectionService;
-import edu.eci.arsw.coronaAPI.httpConnector.HttpCordenateService;
+import edu.eci.arsw.coronaAPI.httpConnector.HttpCoordenateService;
 import edu.eci.arsw.coronaAPI.model.*;
 import edu.eci.arsw.coronaAPI.persistence.CoronaCache;
 
@@ -24,11 +26,11 @@ public class CoronaServicesImpl implements CoronaServices {
     @Autowired
     HttpConnectionService httpConnectionService;
     @Autowired
-    HttpCordenateService httpCordenateService;
+    HttpCoordenateService httpCordenateService;
 
     public HashMap<String, Pais> getPaises() throws ServiceException {
         try {
-            if (!coronaCache.getLista()) {
+            if ((!coronaCache.getLista()) || (LocalDateTime.now().isAfter(coronaCache.getUltimaEjecucion().plusMinutes(5)))) {
                 coronaCache.traerData(httpConnectionService.getAllCountries());
             }
             return coronaCache.getPaises();

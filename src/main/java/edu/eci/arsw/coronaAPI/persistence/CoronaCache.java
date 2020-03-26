@@ -1,6 +1,10 @@
 package edu.eci.arsw.coronaAPI.persistence;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.TimerTask;
+
 import edu.eci.arsw.coronaAPI.exceptions.CacheException;
 import edu.eci.arsw.coronaAPI.model.*;
 import org.json.JSONException;
@@ -17,6 +21,7 @@ public class CoronaCache {
     private boolean lista = false;
     private HashMap<String, Pais> paises = new HashMap<>();
     private HashMap<String, String> ubicaciones = new HashMap<>();
+    private LocalDateTime ultimaEjecucion=LocalDateTime.now();
 
     public void traerData(HttpResponse<JsonNode> response) throws CacheException {
         try {
@@ -40,6 +45,7 @@ public class CoronaCache {
         } catch (JSONException e) {
             throw new CacheException("Error al cargar data");
         } 
+        ultimaEjecucion = LocalDateTime.now();
         lista = true; 
     }
 
@@ -72,4 +78,8 @@ public class CoronaCache {
         return this.lista;
     }
 
+    public LocalDateTime getUltimaEjecucion(){
+        return ultimaEjecucion;
+    }
+    
 }

@@ -1,15 +1,13 @@
-package edu.eci.arsw.coronaAPI.httpConnector;
-
+package edu.eci.arsw.coronaAPI.httpConnector.impl;
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-
-import org.apache.logging.log4j.util.StringBuilderFormattable;
 import org.springframework.stereotype.Service;
 
+import edu.eci.arsw.coronaAPI.httpConnector.HttpCoordenateService;
+
 @Service
-public class HttpCordenateService {
+public class HttpCordenateServiceImpl implements HttpCoordenateService{
 
     public String getCoordenadas(String pais) throws UnirestException{
         HttpResponse<String> response = Unirest

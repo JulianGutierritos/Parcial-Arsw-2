@@ -2,7 +2,7 @@
 
 ##Heroku Link
 
-https://dashboard.heroku.com/apps/julian-gutierrez-arsw2/deploy/github
+https://julian-gutierrez-arsw2.herokuapp.com/
 
 
 ## Comandos de ejecución
@@ -13,8 +13,14 @@ mvn spring-boot:run
 La acplicación cuenta con una estructura que le permite adaptarse rápidamente a otro manejo de datos, ya que cuenta interfaces intermedias tanto desde el main a las clases de servicio, como entre las clases de servicio y las clases para acceder a la data.
 
 
+## Bono 1
+Para realizar este bono, se agregó un atributo al caché para determinar hace cuando fue la última actualización de este:
 
+![](ArchitectureDiagrams/bono1.png)
 
+Y luego se valida este atributo en la calse de Servicio de la aplicación. Donde, en caso del cache tener un tiempo de actualización mayor a 5 minutos, se vuelve a ejecutar:
+
+![](ArchitectureDiagrams/bono2.png)
 
 ## Preparación para el Parcial
 
