@@ -33,8 +33,15 @@ var app = (function () {
         $("#country").append('<tr class="table-row"><td>Num Infected</td><td>'+ resp.numInfected +'</td></tr>');
         $("#country").append('<tr class="table-row"><td>Num Cured</td><td>'+ resp.numCured +'</td></tr>');
         for (i = 0; i < resp.provincias.length ; i++){
-            console.log(resp.provincias[i].nombre);
+            row = resp.provincias[i];
+            $("#provinces").append(
+                '<tr class="table-row" onclick="app.prueba(\'' + row.nombre +  '\')"><td>'+ row.nombre + '</td><td>' + row.numDeaths + '</td><td>' + row.numInfected + '</td><td>' + row.numCured + '</td></tr>'
+            );
         }
+    }
+
+    var prueba = function(nombre){
+        alert(nombre);
     }
 
     
