@@ -13,30 +13,39 @@ public class Pais {
     }
 
     public void addProvincia(Provincia p){
-        setNumInfected(p.numInfected);
-        setDeaths(p.numDeaths);
-        setNumCured(p.numCured);
+        numInfected += p.numInfected;
+        numDeaths += p.numDeaths;
+        numCured += p.numCured;
         provincias.add(p);
     }
 
     public void setNumInfected(int val){
-        this.numInfected += val;
+        this.numInfected = val;
     }
 
     public void setDeaths(int val){
-        this.numDeaths += val;
+        this.numDeaths = val;
     }
 
     public void setNumCured(int val){
-        this.numCured += val;
+        this.numCured = val;
     }
 
     public String getNombre(){
         return this.nombre;
     }
 
-    public ArrayList<Provincia> getProvincia(){
+    public ArrayList<Provincia> getProvincias(){
         return this.provincias;
+    }
+    public int getNumDeaths(){
+        return numDeaths;
+    }
+    public int getNumInfected(){
+        return numInfected;
+    }
+    public int getNumCured(){
+        return numCured;
     }
 
 }

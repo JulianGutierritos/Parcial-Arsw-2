@@ -11,4 +11,32 @@ public class Provincia{
         this.numDeaths = numDeaths;
         this.numCured = numCured;
     }
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
+    public void setNumDeaths(int numDeaths){
+        this.numDeaths = numDeaths;
+    }
+
+    public void setInfected(int numInfected){
+        this.numInfected = numInfected;
+    }
+
+    public void setNumCured(int numCured){
+        this.numCured = numCured;
+    }
+    public String getNombre(){
+        return nombre;
+    }
+    public int getNumDeaths(){
+        return numDeaths;
+    }
+    public int getNumInfected(){
+        return numInfected;
+    }
+    public int getNumCured(){
+        return numCured;
+    }
 }

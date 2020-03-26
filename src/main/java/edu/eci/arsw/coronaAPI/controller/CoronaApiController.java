@@ -21,6 +21,7 @@ public class CoronaApiController {
     @RequestMapping(path = "/countries", method = RequestMethod.GET)
     public ResponseEntity<?> getAll() {
         try {
+            System.out.println(this.coronaServices.getPaises());
             return new ResponseEntity<>(this.coronaServices.getPaises(), HttpStatus.OK);
         } catch (ServiceException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -30,6 +31,7 @@ public class CoronaApiController {
     @RequestMapping(path = "/countries/{pais}", method = RequestMethod.GET)
     public ResponseEntity<?> getOne(@PathVariable("pais") String pais) {
         try {
+            System.out.println(this.coronaServices.getPais(pais));
             return new ResponseEntity<>(this.coronaServices.getPais(pais), HttpStatus.OK);
         } catch (ServiceException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
